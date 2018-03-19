@@ -32,6 +32,7 @@ where
     type Error = io::Error;
 
     fn decode(&mut self, buf: &mut BytesMut) -> Result<Option<Self::Item>, Self::Error> {
+        eprintln!("decode called");
         if let Some(index) = buf.iter().position(|byte| *byte == b'\n') {
             let line = buf.split_to(index + 1);
             let item = serde_json::from_slice(&line[0..line.len() - 1])?;

@@ -83,6 +83,12 @@ impl Window {
     }
 }
 
+impl Drop for WindowUpdateStream {
+    fn drop(&mut self) {
+        eprintln!("Droppppping")
+    }
+}
+
 impl Stream for WindowUpdateStream {
     type Item = WindowUpdate;
     type Error = ();
